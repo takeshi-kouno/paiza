@@ -1,21 +1,48 @@
-n = gets.to_i
+close = gets.to_i
 
-n.times do
-  t, c_h, c_m = gets.split(" ")
-  h, m = t.split(":").map(&:to_i)
-  c_h, c_m = c_h.to_i, c_m.to_i
+# 
 
-  h += c_h
-  m += c_m
-  if m > 59
-    h += 1
-    m -= 60
+close.times do
+  start, hour, min = gets.split(" ")
+  start_h, start_m = t.split(":").map(&:to_i)
+  hour, min = hour.to_i, min.to_i
+
+  # 
+
+  start_h += hour
+  start_m += min
+  if start_m > 59
+    start_h += 1
+    start_m -= 60
   end 
-  h -= 24 if h > 23
 
-  h, m = h.to_s, m.to_s
-  h = "0" + h if h.length == 1
-  m = "0" + m if m.length == 1
-  
-  puts h + ":" + m
+  start_h -= 24 if start_h > 23
+
+  # DRY don't repeat yourself
+
+  # start_h, start_m = start_h.to_s, start_m.to_s
+  # start_h = "0" + start_h if start_h.length == 1
+  # start_m = "0" + start_m if start_m.length == 1
+  start_h = addZero(start_h)
+  start_m = addZero(start_m)
+  # 
+
+  puts start_h + ":" + start_m
+  # 
 end
+
+
+
+# 何回入力があるか
+# 工事の時間の配列を作る(一個のセットはHash)
+# 時間を計算する。
+# フォーマットする。関数にする。
+# 出力する。
+
+
+def addZero(time)
+  time.to_s
+  time = "0" + time if time.length == 1
+end
+
+addZero(start_h)
