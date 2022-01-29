@@ -1,11 +1,17 @@
-n, m, k = gets.split(" ").map(&:to_i)
 
-total_k = Array.new(n)
+#入力データを文字列を分割、数値化
+N,M,K = gets.split(" ").map(&:to_i)
 
-n.times{
-    |i| total_k[i] = gets.split(" ").select {|num| num.to_i == k}
+info = Array.new(N)
+N.times{|i|
+info[i] = gets.split(" ").map(&:to_i)
 }
 
-total_k.each do |point| 
-  puts point.length
-end
+#得点の計算
+info.each{|paper|
+  point = 0
+  paper.each{|num|
+    point += 1 if num == K
+  }
+  puts point
+}
