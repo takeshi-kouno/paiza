@@ -4,7 +4,7 @@ def finishTime(times)
   finishTimes = schedules.map do |schedule|
     schedule[2] = " "
     startHour, startMin, workHour, workMin = schedule.split.map(&:to_i)
-
+jjjjjjj\
     closeMin = startMin + workMin
     if closeMin >= 60
       closeMin -= 60
