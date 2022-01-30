@@ -16,34 +16,34 @@ N.times{
   startTime = info[0].split(":")
   workTime = info[1..2]
 
-  startTime: {hour: startTime[0], min: startTime[1]}
-  workTime: {hour: workTime[0], min: workTime[1]}
+  startTime: {hour: startTime[0], min: startTime[1]}.to_i
+  workTime: {hour: workTime[0], min: workTime[1]}.to_i
 }
 
 # 終了時間を計算したデータを格納する配列を作る
 
-answer = []
+#answer = []
 
-schedule.each{|s|
+schedule.each{
 # "15:59"
-  startTime = s[0] 
+  #startTime = s[0] 
 # ["15","59"]
-  ss = startTime.split(":")
+  #ss = startTime.split(":")
 
-  startHour = ss[0].to_i
-  startMin = ss[1].to_i
-  workHour = s[1].to_i
-  workMin = s[2].to_i
+  #startHour = ss[0].to_i
+  #startMin = ss[1].to_i
+  #workHour = s[1].to_i
+  #workMin = s[2].to_i
 # ------いじる
 
-draftHour = startHour + workHour
-draftMin = startMin + workMin
+totalHour = startTime[:hour] + workTime[:hour]
+totalMin = startTime[:min] + workTime[:min]
 
 # ---- 
 
-if draftMin >= 60
-  totalHour =  draftHour + 1
-  totalMin = draftMin - 60
+if totalMin >= 60
+  totaltHour + 1
+  totalMin - 60
 end
 
 # -----
@@ -55,25 +55,25 @@ end
 # ----
 
 if totalHour.to_s.length == 1
-  formatedHour = "0#{totalHour.to_s}"
+  endHour = "0#{totalHour.to_s}"
 else
-  formatedHour = totalHour.to_s
+  endHour = totalHour.to_s
 end
 
 if totalMin.to_s.length == 1
-  formatedMin = "0#{totalMin.to_s}"
+  endMin = "0#{totalMin.to_s}"
 else
-  formatedMin = totalMin.to_s
+  endMin = totalMin.to_s
 end
 
 
-puts = "#{formatedHour}:#{formatedMin}"
+endTime = "#{endHour}:#{endMin}"
 
-answer.puth(answerTime)
+#answer.puth(answerTime)
 }
 
 # 出力する
 
-answer.each{|a|
-  puts a
+endTime.each{|answer|
+  puts answer
 }
