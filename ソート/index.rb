@@ -1,19 +1,28 @@
-n = gets.to_i
+#入力受取
+N = gets.to_i
 
-a = Array.new(n)
-n.times{|i| a[i] = gets.split(" ").map(&:to_i)}
+#財産の配列
+property = []
+N.times{
+info = gets.split(" ").map(&:to_i)
+property.push(info)
+#{"gold", "silver"}
+}
 
-n.times do |i|
-  gold = a[i][0]
-  silver = a[i][1]
+#金と銀を逆にする
+N.times{
+  gold = property[0]
+  silver = property[1]
 
-  a[i][0] = silver
-  a[i][1] = gold
-end
+  property[0] = silver
+  property[1] = gold
+}
 
-a.sort!.reverse!
+#配列を降順にする
+property.sort.reverse
 
-a.each do |b|
+
+property.each{|propertyNew|
   b[0], b[1] = b[1], b[0]
   puts b.join(" ")
-end
+}
