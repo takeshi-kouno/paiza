@@ -1,21 +1,59 @@
-n = gets.to_i
+#入力受取
+N = gets.to_i
 
-n.times do
-  t, c_h, c_m = gets.split(" ")
-  h, m = t.split(":").map(&:to_i)
-  c_h, c_m = c_h.to_i, c_m.to_i
+#工事の時刻を受け取って配列にする
+schedules = []
 
-  h += c_h
-  m += c_m
-  if m > 59
-    h += 1
-    m -= 60
-  end 
-  h -= 24 if h > 23
+N.times{
+  schedule = gets.split(" ")
+  startTime = schedule[0].split(":").map(&:to_i)
+  workTime = schedule[1..2].map(&:to_i)
 
-  h, m = h.to_s, m.to_s
-  h = "0" + h if h.length == 1
-  m = "0" + m if m.length == 1
-  
-  puts h + ":" + m
+  schedule = {
+    startTime: {hour: startTime[0], min: startTime[1]},
+    workTime: {hour: workTime[0], min: workTime[1]}
+  }
+
+  schedules.push(schedule)
+}
+
+endtimeList = []
+#計算する
+schedules.each{|schedule|
+  startTime = schedule[:startTime]
+  workTime = schedule[:workTime]
+
+totalHour = startTime[:hour] + workTime[:hour]
+totalMin = startTime[:min] + workTime[:min]
+
+#繰り上げ計算
+if totalMin >= 60
+  totaltHour + 1
+  totalMin - 60
 end
+
+if totalHour >= 24
+  totalHour -= 24
+end
+
+#一桁の場合０を追加
+if totalHour.to_s.length == 1
+  endHour = "0#{totalHour.to_s}"
+else
+  endHour = totalHour.to_s
+end
+
+if totalMin.to_s.length == 1
+  endMin = "0#{totalMin.to_s}"
+else
+  endMin = totalMin.to_s
+end
+
+endTime = "#{endHour}:#{endMin}"
+endtimeList.push(endTime)
+}
+
+#ループして出力
+endtimeList.each{|answer|
+  puts answer
+}
