@@ -1,20 +1,26 @@
+#一行目
+#人数２人、回答数２個、答え、１
+#二行目、回答
+#2 2
+#1 2
+#1,1
 
 #入力受取
 N,M,K = gets.split(" ").map(&:to_i)
 
-#回答紙の配列
-info = []
+#回答紙を入力受取し配列に入れる
+answerLists = []
 N.times{
-  paper = gets.split(" ").map(&:to_i)
-info.push(paper)
+info = gets.split(" ").map(&:to_i)
+answerLists.push(info)
 }
 
 #得点の計算
-info.each{|answer|
+answerLists.each{|answerList|
   point = 0
-  #numにinfo(回答紙_を格納
-  answer.each{|num| 
-  #Kと数字が合えば1point
+
+  #numとKが合えば１point
+  answerList.each{|num| 
     if num == K
       point += 1 
     end
