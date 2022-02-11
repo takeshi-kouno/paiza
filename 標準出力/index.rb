@@ -1,10 +1,10 @@
-n = gets.to_i
+N = gets.to_i
 
-members = Array.new(n)
+members = Array.new(N).map {
+    info = gets.split(" ")
+    {name:info[0],age:info[1].to_i}
+}
 
-n.times { |i| members[i] = gets.split(" ")}
-
-members.each do |member|
-    name, age = member [0], member[1].to_i
-    puts "#{name}#{" "}#{age + 1}"
-end
+members.each {|member|
+    puts "#{member[:name]} #{member[:age]+1}"
+}
