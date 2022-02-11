@@ -2,19 +2,25 @@
 N = gets.to_i
 
 info = Array.new(N).map{
-    gets.split(" ").map(&:to_i)
+    gold, silver = gets.split(" ").map(&:to_i)
+    {gold: gold, silver: silver}
+    #info = {gold:2,silver:1}
+    #info = {gold:2,silver:2}
 }
 
 #配列の要素を交換
-propertys = info.each{|shift|
-  shift[1], shift[0] = shift[0], shift[1]
+#propertys = info.each{|shift|
+#  shift[1], shift[0] = shift[0], shift[1]
+#}
+properties = info.sort{|a, b|
+[b[:silver], b[:gold]] <=> [a[:silver], a[:gold]]
+#[b[:1],b[2]] <=> [a[:2], a[1]]
 }
 
-#silverの降順ソート
-sortedPropertys = propertys.sort.reverse
+#4の降順ソート
+#sortedPropertys = propertys.sort.reverse
 
 #配列の要素を戻してループで出力
-sortedPropertys.each{|propertysNew|
-  propertysNew[0], propertysNew[1] = propertysNew[1], propertysNew[0]
-  puts propertysNew.join(" ")
+properties.each{|propertysNew|
+  puts propertysNew.values.join(" ")
 }
