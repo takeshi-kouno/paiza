@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 
 const input = readFileSync("/dev/stdin", "utf8").trim();
-const [_, ...info] = input.split("\n");
+const [_, ...rest] = input.split("\n");
 
 type Time = {
   hour: number;
@@ -13,11 +13,12 @@ type Schedule = {
   work: Time;
 };
 
-const schedules: Schedule[] = info.map((i) => {
-  const startInfo = i[0].split(":").map((t) => +t);
+const schedules: Schedule[] = rest.map((i) => {
+  const [startInfo, ...workInfo] = i.split(" ");
+  const [startHour, startMin] = startInfo.split(":").map((t) => +t);
 
-  const start: Time = { hour: startInfo[0], min: startInfo[1] };
-  const work: Time = { hour: +info[0], min: +info[1] };
+  const start: Time = { hour: startHour, min: startMin };
+  const work: Time = { hour: +workInfo[0], min: +workInfo[1] };
 
   return { start: start, work: work };
 });
