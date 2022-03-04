@@ -32,7 +32,7 @@ const upwardmoveTime = constructionInformation.map((time) => {
   return [totalHour, totalMin];
 });
 
-addzeroTime = upwardmoveTime.map((time) => {
+const addzeroTime = upwardmoveTime.map((time) => {
   [totalHour, totalMin] = time;
 
   totalHour = String(totalHour);
